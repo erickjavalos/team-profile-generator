@@ -66,7 +66,7 @@ module.exports = () => {
                     name: 'id',
                     type: "input",
                     message: `Intern's id:`,
-                    default: '1111'
+                    default: '2222'
                 },
                 {
                     name: 'email',
