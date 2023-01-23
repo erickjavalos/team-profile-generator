@@ -38,7 +38,7 @@ npm run test
 
 Example Output
 
-[!alt](/assets/images/sample_output.png)
+![Alt text](assets/images/sample_output.png?raw=true "Title"
 
 ## Questions?
 
