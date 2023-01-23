@@ -38,7 +38,7 @@ npm run test
 
 Example Output
 
-<img src="https://github.com/eavalo14/team-profile-generator/blob/main/assets/images/sample_output.png" alt="Webpage">
+[!alt](/assets/images/sample_output.png)
 
 ## Questions?
 
