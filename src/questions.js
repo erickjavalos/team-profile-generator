@@ -1,3 +1,9 @@
+// Questions
+//
+// Description: prompts for all questions asked by application with helper functions 
+//
+
+
 const inquirer = require('inquirer');
 
 
@@ -7,25 +13,25 @@ module.exports = () => {
             const question = [
                 // team manager
                 {
-                    name: 'team_manager_name',
+                    name: 'name',
                     type: "input",
                     message: 'Team Managers Name',
                     default: 'Joe Bruin'
                 },
                 {
-                    name: 'manager_employee_id',
+                    name: 'id',
                     type: "input",
                     message: 'Employee ID',
                     default: '0000'
                 },
                 {
-                    name: 'manager_email',
+                    name: 'email',
                     type: "input",
                     message: 'Email',
                     default: 'JohnDoe@gmail.com'
                 },
                 {
-                    name: 'manager_office_number',
+                    name: 'office',
                     type: "input",
                     message: 'Office Number',
                     default: '0000'
@@ -51,25 +57,25 @@ module.exports = () => {
             const question = [
                 // intern name
                 {
-                    name: 'intern_name',
+                    name: 'name',
                     type: "input",
                     message: `Intern's name:`,
                     default: 'John Bruin'
                 },
                 {
-                    name: 'intern_id',
+                    name: 'id',
                     type: "input",
                     message: `Intern's id:`,
                     default: '1111'
                 },
                 {
-                    name: 'intern_email',
+                    name: 'email',
                     type: "input",
                     message: `Intern's email:`,
                     default: 'JohnDoey@gmail.com'
                 },
                 {
-                    name: 'intern_school',
+                    name: 'school',
                     type: "input",
                     message: `Intern's school:`,
                     default: 'UCLA'
@@ -81,25 +87,25 @@ module.exports = () => {
             const question = [
                 // intern name
                 {
-                    name: 'engineer_name',
+                    name: 'name',
                     type: "input",
                     message: `Engineer's name:`,
                     default: 'Joey Bruin'
                 },
                 {
-                    name: 'engineer_id',
+                    name: 'id',
                     type: "input",
                     message: `Engineers's id:`,
                     default: '1111'
                 },
                 {
-                    name: 'engineer_email',
+                    name: 'email',
                     type: "input",
                     message: `Engineer's email:`,
                     default: 'JoeyDoey@gmail.com'
                 },
                 {
-                    name: 'engineer_github',
+                    name: 'github',
                     type: "input",
                     message: `Github username:`,
                     default: 'joebruin'
