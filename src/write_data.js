@@ -1,11 +1,8 @@
 const fs = require('fs')
 // writes the data to an index.html file
-writeData = (teamData,fileName) => {
-    let indexHTML = ''
-    indexHTML += getHeadHTML()
-    indexHTML += getInfoHTML(teamData)
+writeData = (teamData, fileName) => {
+    indexHTML = getHTML(teamData);
     
-    console.log(indexHTML)
     fs.writeFile(fileName, indexHTML, err => {
         if (err) {
           console.error(err);
@@ -13,6 +10,14 @@ writeData = (teamData,fileName) => {
     })
 }
 
+getHTML = (teamData) => {
+    let indexHTML = ''
+    indexHTML += getHeadHTML()
+    indexHTML += getInfoHTML(teamData)
+    indexHTML += getFooterHTML()
+    // returns data
+    return indexHTML
+}
 // returns top half of the html document string
 getHeadHTML = () => {
     return `<!DOCTYPE html>
@@ -27,8 +32,7 @@ getHeadHTML = () => {
         <body>
             <header class="row">
                 <h1>My Team</h1>
-            </header>
-    `
+            </header>`
 }
 
 // constructs information section dynamically
@@ -46,7 +50,7 @@ getInfoHTML = (teamData) => {
                 infoHTML += getEngineerHTML(member)
                 break;
             case "Intern":
-                // interns.push(teamData[i])
+                infoHTML += getInternHTML(member)
                 break;
 
         }
@@ -55,24 +59,78 @@ getInfoHTML = (teamData) => {
 }
 // returns the managers htmls dynamically
 getManagerHTML = (member) => {
-    console.log(member)
-    let subHTML = `<main>
-                    <!-- Manager -->
-                    <section class="card bg-light">  
-                        <!-- <p>Manager</p> -->
-                        <div class="card-header bg-primary text-white">
-                            <h4>${member.name}</h4>
-                            <h4>☕️ Manager</h4>
-                        </div>
-                        <ul class="list-group fs-8">
-                            <li class="list-group-item">ID: ${member.id}</li>
-                            <li class="list-group-item">Email: <a href="mailto:${member.email}">${member.id}</a></li>
-                            <li class="list-group-item">Office number: ${member.officeNum}</li>
-                            </ul>
-                    </section>
+    let subHTML = `
+
+            <main>
+                <!-- Manager -->
+                <section class="card bg-light">  
+                    <!-- <p>Manager</p> -->
+                    <div class="card-header bg-primary text-white">
+                        <h4>${member.name}</h4>
+                        <h4>☕️ Manager</h4>
+                    </div>
+                    <ul class="list-group fs-8">
+                        <li class="list-group-item">ID: ${member.id}</li>
+                        <li class="list-group-item">Email: <a href="mailto:${member.email}">${member.id}</a></li>
+                        <li class="list-group-item">Office number: ${member.officeNum}</li>
+                        </ul>
+                </section>
                     `
     return subHTML
 }
+
+// returns the engineer htmls dynamically
+getEngineerHTML = (member) => {
+    let subHTML = `
+                <!-- Engineer -->
+                <section class="card bg-light">  
+                    <div class="card-header bg-primary text-white">
+                        <h4>${member.name}</h4>
+                        <h4>🤓 Engineer</h4>
+                    </div>
+                    <ul class="list-group fs-8">
+                        <li class="list-group-item">ID: ${member.id}</li>
+                        <li class="list-group-item">Email: <a href="mailto:${member.email}">${member.email}</a></li>
+                        <li class="list-group-item">Github: <a href="https://github.com/${member.github}" touch="__blank">${member.github}</a></li>
+                        </ul>
+                </section>`
+    // returns subHTML
+    return subHTML
+}
+
+// returns the intern htmls dynamically
+getInternHTML = (member) => {
+    let subHTML = `
+                <!-- Intern -->
+                <section class="card bg-light">  
+                    <div class="card-header bg-primary text-white">
+                        <h4>${member.name}</h4>
+                        <h4>🎓 Intern</h4>
+                    </div>
+                    <ul class="list-group fs-8">
+                        <li class="list-group-item">ID: ${member.id}</li>
+                        <li class="list-group-item">Email: <a href="mailto:${member.email}">${member.email}</a></li>
+                        <li class="list-group-item">School: ${member.school}</li>
+                        </ul>
+                </section>
+                    `
+    // returns subHTML
+    return subHTML
+}
+
+getFooterHTML = () => 
+{
+    return `
+            </main>
+        </body>
+
+
+    </html>
+</>`
+
+}
+
+
 
 // sort the data from Manager, Engineers (alphabetically), Interns(alphabetically)
 sortData = (teamData) => {
