@@ -67,6 +67,7 @@ class WriteData{
         // sort the team data in terms of Manager, Engineers(alpha), Interns(alpha)
         let teamSorted = this.#sortData(teamData);
         teamSorted.forEach((member) => {
+            console.log(member.getRole())
             switch(member.getRole())
             {
                 case "Manager":
