@@ -34,7 +34,6 @@ const promptEngineer = () => {
     // prompt manager and save to global variable
     return questions.promptEngineer()
         .then((engineerData)=> {
-            console.log(engineerData)
             let engineer = new Engineer(engineerData.name, engineerData.id, engineerData.email, engineerData.github)
             team_data.push(engineer)
             promptMenu()
