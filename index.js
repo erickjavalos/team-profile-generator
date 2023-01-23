@@ -1,10 +1,9 @@
 const inquirer = require('inquirer');
 // get questions hellper function
 const questions = require('./src/questions')()
-// write data helper function
-const writeData = require('./src/write_data')
+// write data helper class
+const WriteData = require('./src/WriteData')
 // get classes
-const Employee = require('./lib/Employee')
 const Manager = require('./lib/Manager')
 const Engineer = require('./lib/Engineer')
 const Intern = require('./lib/Intern')
@@ -18,9 +17,9 @@ const fileName = "./dist/index.html"
 
 let manager_data = {}
 let team_data = []
-// let teamSelected =?
 
-const promptManager = () => {
+// start application
+const start = () => {
     // prompt manager and save to global variable
     return questions.promptTeamManager()
         .then((teamManager)=> {
@@ -30,6 +29,7 @@ const promptManager = () => {
         });
 };
 
+// prompt engineer
 const promptEngineer = () => {
     // prompt manager and save to global variable
     return questions.promptEngineer()
@@ -40,7 +40,7 @@ const promptEngineer = () => {
             promptMenu()
         });
 };
-
+// prompt intern
 const promptIntern = () => {
     // prompt manager and save to global variable
     return questions.promptIntern()
@@ -51,6 +51,7 @@ const promptIntern = () => {
         });
 };
 
+// prompt menu to select from engineer or intern
 const promptMenu = (data) => {
     // prompt for team member
     manager_data = data
@@ -69,7 +70,10 @@ const promptMenu = (data) => {
                 return promptIntern()                    
             }
             else{
-                writeData(team_data)
+                // create write data object
+                let wd = new WriteData(team_data, fileName)
+                // write to file
+                wd.write()
             }
 
 
@@ -77,28 +81,5 @@ const promptMenu = (data) => {
 }
 
 
-
-// promptManager()
-
-// testing
-
-team_data = [
-    new Manager('Joe Bruin','1','joebruin@gmail.com','1'),
-    new Engineer('Erick','2','avaloserick97@gmail.com','erickjavalos'),
-    new Engineer('Joey','3','joeybruin@gmail.com','joeybruin'),
-    new Engineer('Jon','5','jon@gmail.com','jon'),
-    new Engineer('Jona','10','jona@gmail.com','jona'),
-    new Intern('Jason','6','jason@joeybruin@gmail.com','UCLA'),
-    new Intern('Alpha','7','alpha@joeybruin@gmail.com','UCLA'),
-    new Intern('Beta','8','beta@joeybruin@gmail.com','UCSC'),
-    new Intern('Zulu','9','zulu@joeybruin@gmail.com','USC')
-  ]
-writeData(team_data,fileName)
-  
-
-// Promise.all([promptManager])
-// .then(promptMenuCB)
-// .then(promptInfo)
-// .then((info) => {
-//     console.log(info)
-// })
+// start application
+start()
